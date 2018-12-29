@@ -1,0 +1,48 @@
+{
+  "name": "influme-backend",
+  "version": "0.0.1",
+  "description": "Influme Backend",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js --exec babel-node --presets babel-preset-env",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/santteegt/influme-backend.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/santteegt/influme-backend/issues"
+  },
+  "homepage": "https://github.com/santteegt/influme-backend#readme",
+  "dependencies": {
+    "async": "^2.6.1",
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.3",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "express-winston": "^3.0.1",
+    "mongoose": "^5.4.1",
+    "mongoose-bcrypt": "^1.6.0",
+    "mongoose-string-query": "^0.2.5",
+    "mongoose-timestamp": "^0.6.0",
+    "validator": "^10.10.0",
+    "winston": "^3.1.0",
+    "winston-papertrail": "^1.0.5"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.4",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "nodemon": "^1.18.9",
+    "prettier": "^1.10.2",
+    "prettierrc": "^0.0.0-5"
+  }
+}

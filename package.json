@@ -1,0 +1,16 @@
+{
+	"name": "server",
+	"version": "0.0.1",
+	"description": "Influme Backend Server",
+	"scripts": {
+		"start": "cd dist && node server.js",
+		"watch": "nodemon start",
+		"build": "./build.sh"
+	},
+	"license": "Apache-2.0",
+	"dependencies": {
+		"babel": "^6.23.0",
+		"babel-cli": "^6.26.0",
+		"babel-preset-env": "^1.6.1"
+	}
+}
