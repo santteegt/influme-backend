@@ -31,7 +31,8 @@ In case mondod is not runnning as a daemon
 
 ```
 mkdir ./data_db
-mongod --dppath ./data_db
+mongod --dbpath ./data_db
+
 ```
 ## Deploy server for development
 
