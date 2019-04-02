@@ -10,6 +10,6 @@ export default {
 		port: process.env.LOGGER_PORT, // Papertrail Logging Port
 	},
 	database: {
-		uri: !process.env.NODE_ENV ? "mongodb://localhost/influme":process.env.MONGODB_URL
+		uri: !process.env.NODE_ENV ? "mongodb://localhost/influme":process.env.MONGODB_URI
 	}
 };
