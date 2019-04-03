@@ -41,4 +41,21 @@ $ cd src
 $ npm run dev
 ```
 
+## Production deployment
+
+Only the first time, add the heroku remote
+```
+$ heroku git:remote -a influme
+$ git pull remote master
+```
+
+To deploy commit/push any change with any commit message
+
+```
+$ heroku login
+$ git add -A
+$ heroku commit -m "Heroku deploy"
+$ heroku push heroku master
+```
+
 
