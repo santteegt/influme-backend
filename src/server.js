@@ -49,8 +49,9 @@ api.use(bodyParser.json());
 // 		meta: true
 // 	})
 // );
+api.set('port', process.env.PORT || config.server.port)
 
-api.listen(config.server.port, err => {
+api.listen(api.get('port'), err => {
 	if (err) {
 		logger.error(err);
 		process.exit(1);
@@ -63,7 +64,7 @@ api.listen(config.server.port, err => {
 	});
 
 	logger.info(
-		`API is now running on port ${config.server.port} in ${config.env} mode`
+		`API is now running on port ${api.get('port')} in ${config.env} mode`
 	);
 });
 
