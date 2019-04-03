@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"description": "Influme Backend Server",
 	"scripts": {
-		"start": "export NODE_ENV=production && export PORT=80 && cd dist && node server.js",
+		"start": "export NODE_ENV=production && cd dist && node server.js",
 		"watch": "nodemon start",
 		"build": "sh build.sh"
 	},
