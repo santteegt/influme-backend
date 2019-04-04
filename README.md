@@ -54,8 +54,8 @@ To deploy commit/push any change with any commit message
 ```
 $ heroku login
 $ git add -A
-$ heroku commit -m "Heroku deploy"
-$ heroku push heroku master
+$ git commit -m "Heroku deploy"
+$ git push heroku master
 ```
 
 
