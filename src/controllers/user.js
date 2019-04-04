@@ -25,6 +25,7 @@ import logger from '../utils/logger';
 // };
 
 exports.get = (req, res) => {
+	console.log("[*]")
 	User.findById(req.params.userId)
 		.then(user => {
 			user.password = undefined;

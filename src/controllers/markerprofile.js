@@ -26,7 +26,7 @@ import logger from '../utils/logger';
 
 exports.list = (req, res) => {
 	// console.log("[*] GET" + req.params.nameMarker);
-	console.log("[*] GET");
+	console.log("[*] GET lista");
 
 	// Markerprofile.findByTitle(req.params.id)
 	Markerprofile.find({})
@@ -67,33 +67,57 @@ exports.get = (req, res) => {
 		});
 };
 
-// exports.put = (req, res) => {
-// 	const data = req.body || {};
 
-// 	if (data.email && !validator.isEmail(data.email)) {
-// 		return res.status(422).send('Invalid email address.');
-// 	}
+exports.getInterests = (req, res) => {
 
-// 	if (data.username && !validator.isAlphanumeric(data.username)) {
-// 		return res.status(422).send('Usernames must be alphanumeric.');
-// 	}
+	// var markerInterest = new Markerprofile(req.body);
+	var markerInterest = req.params.idstypes.split(",");;
+	// var minterests = [];
+	// var minterests = markerInterest.type;
 
-// 	User.findByIdAndUpdate({ _id: req.params.userId }, data, { new: true })
-// 		.then(user => {
-// 			if (!user) {
-// 				return res.sendStatus(404);
-// 			}
+	console.log("[*] GET Intereses Query " + typeof(markerInterest));
+		console.log("[*] GET Intereses Query II " + JSON.stringify(markerInterest));
+		
+		// console.log("[*] GET Intereses Query II " + JSON.stringify(req.body.type));
+		// console.log("[*] GET Intereses Query III " + JSON.stringify(minterests));
 
-// 			user.password = undefined;
-// 			user.recoveryCode = undefined;
+	// Usersdeals.findByTitle(req.params.id)
+	//Usersdeals.count({userid: req.params.userid, markerid: req.params.markerid, status: true})
+	Markerprofile.find({type: { $in: markerInterest}})
+		.then(
+			markerInterestsResponse => {
+				res.json(markerInterestsResponse);		
+			}
+		)
+		.catch(err => {
+			logger.error(err);
+			res.status(422).send(err.errors);
+		});
+};
 
-// 			res.json(user);
-// 		})
-// 		.catch(err => {
-// 			logger.error(err);
-// 			res.status(422).send(err.errors);
-// 		});
-// };
+
+exports.put = (req, res) => {
+
+	console.log(req);
+	const data = req.body || {};
+
+	// var markerp = new Markerprofile(req.body);
+	// console.log(data);
+	// console.log(JSON.stringify(data));
+	// console.log(req);
+
+	Markerprofile.findOneAndUpdate({ _id: req.params.markerId }, data, { new: true })
+		.then(marker => {
+			if (!marker) {
+				return res.sendStatus(404);
+			}
+			res.json(marker);
+		})
+		.catch(err => {
+			logger.error(err);
+			res.status(422).send(err.errors);
+		});
+};
 
 exports.post = (req, res) => {
 	var markerp = new Markerprofile(req.body);

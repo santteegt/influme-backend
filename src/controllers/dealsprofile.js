@@ -98,14 +98,58 @@ exports.getDeals = (req, res) => {
 
 	var todayStart = new Date();
 	todayStart.setHours(0,0,0,0);
-	// Dealsprofile.find({markerid: req.params.nameMarker})
 
-	Dealsprofile.find({ markerid: req.params.markerId, 
+	var markerInterest = req.params.markerId.split(",");;
+
+	// Dealsprofile.find({ markerid: {$in: req.params.markerId}, 
+	Dealsprofile.find({ markerid: {$in: markerInterest}, 
 		"$where" : "this.used_tickets < this.total_tickets", 
 		date_expire: {"$gte": todayStart}
-		})
+		}).populate(
+	{
+  		path: 'markerid',
+  		model: 'Markerprofile',
+  		populate: {
+			path: 'type',
+    		model: 'Typemarker'
+  		}
+	}
+	)
 	.then( responsemarker => {
 		res.json(responsemarker);
+		console.log(res);
+	}).catch(err => {
+		logger.error(err);
+		res.status(422).send(err.errors);
+	});
+		
+};
+
+
+
+exports.getTrendingDeals = (req, res) => {
+
+	var todayStart = new Date();
+	todayStart.setHours(0,0,0,0);
+
+	Dealsprofile.find(
+		{
+			"$where" : "this.used_tickets < this.total_tickets",
+			used_tickets: {"$gt": 6},
+			date_expire: {"$gte": todayStart}
+		}
+	).populate(
+	{
+  		path: 'markerid',
+  		model: 'Markerprofile',
+  		populate: {
+			path: 'type',
+    		model: 'Typemarker'
+  		}
+	}
+	)
+	.then( responshdeals => {
+		res.json(responshdeals);
 		console.log(res);
 	}).catch(err => {
 		logger.error(err);
@@ -138,33 +182,33 @@ exports.getOneDeal = (req, res) => {
 		
 };
 
-// exports.put = (req, res) => {
-// 	const data = req.body || {};
+exports.put = (req, res) => {
 
-// 	if (data.email && !validator.isEmail(data.email)) {
-// 		return res.status(422).send('Invalid email address.');
-// 	}
+	const data = req.body || {};
 
-// 	if (data.username && !validator.isAlphanumeric(data.username)) {
-// 		return res.status(422).send('Usernames must be alphanumeric.');
-// 	}
+	console.log("[*] PUT deals profile " + data);
 
-// 	User.findByIdAndUpdate({ _id: req.params.userId }, data, { new: true })
-// 		.then(user => {
-// 			if (!user) {
-// 				return res.sendStatus(404);
-// 			}
+	// if (data.email && !validator.isEmail(data.email)) {
+	// 	return res.status(422).send('Invalid email address.');
+	// }
 
-// 			user.password = undefined;
-// 			user.recoveryCode = undefined;
+	// if (data.username && !validator.isAlphanumeric(data.username)) {
+	// 	return res.status(422).send('Usernames must be alphanumeric.');
+	// }
 
-// 			res.json(user);
-// 		})
-// 		.catch(err => {
-// 			logger.error(err);
-// 			res.status(422).send(err.errors);
-// 		});
-// };
+	Dealsprofile.findOneAndUpdate({ _id: req.params.dealId }, data, { new: true })
+		.then(user => {
+			if (!user) {
+				return res.sendStatus(404);
+			}
+
+			res.json(user);
+		})
+		.catch(err => {
+			logger.error(err);
+			res.status(422).send(err.errors);
+		});
+};
 
 // exports.post = (req, res) => {
 // 	var markerp = new Markerprofile(req.body);

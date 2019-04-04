@@ -9,6 +9,27 @@ import logger from '../utils/logger';
 
 export const UserSchema = new Schema(
 	{
+		username: {
+			type: String,
+			lowercase: true,
+			trim: true,
+			// index: true,
+			unique: true,
+			required: true
+		},
+
+		name: {
+			type: String,
+			trim: true,
+			required: true
+		},
+
+		city: {
+			type: String,
+			trim: true,
+			required: true
+		},
+
 		email: {
 			type: String,
 			lowercase: true,
@@ -17,43 +38,12 @@ export const UserSchema = new Schema(
 			unique: true,
 			required: true
 		},
-		username: {
-			type: String,
-			lowercase: true,
-			trim: true,
-			index: true,
-			unique: true,
-			required: true
-		},
-		password: {
-			type: String,
-			required: true,
-			bcrypt: true
-		},
-		name: {
-			type: String,
-			trim: true,
-			required: true
-		},
-		bio: {
-			type: String,
-			trim: true,
-			default: ''
-		},
-		url: {
-			type: String,
-			trim: true,
-			default: ''
-		},
-		instagram: {
-			type: String,
-			trim: true,
-			default: ''
-		},
+
 		admin: {
 			type: Boolean,
 			default: false
 		}
+
 	},
 	{ collection: 'users' }
 );
@@ -76,29 +66,29 @@ UserSchema.pre('save', function(next) {
 	// 	});
 });
 
-UserSchema.pre('findOneAndUpdate', function(next) {
-	// if (!this._update.recoveryCode) {
-	// 	return next();
-	// }
+// UserSchema.pre('findOneAndUpdate', function(next) {
+// 	// if (!this._update.recoveryCode) {
+// 	// 	return next();
+// 	// }
 
-	// email({
-	// 	type: 'password',
-	// 	email: this._conditions.email,
-	// 	passcode: this._update.recoveryCode
-	// })
-	// 	.then(() => {
-	// 		next();
-	// 	})
-	// 	.catch(err => {
-	// 		logger.error(err);
-	// 		next();
-	// 	});
-});
+// 	// email({
+// 	// 	type: 'password',
+// 	// 	email: this._conditions.email,
+// 	// 	passcode: this._update.recoveryCode
+// 	// })
+// 	// 	.then(() => {
+// 	// 		next();
+// 	// 	})
+// 	// 	.catch(err => {
+// 	// 		logger.error(err);
+// 	// 		next();
+// 	// 	});
+// });
 
-UserSchema.plugin(bcrypt);
-UserSchema.plugin(timestamps);
-UserSchema.plugin(mongooseStringQuery);
+// UserSchema.plugin(bcrypt);
+// UserSchema.plugin(timestamps);
+// UserSchema.plugin(mongooseStringQuery);
 
-UserSchema.index({ email: 1, username: 1 });
+// UserSchema.index({ email: 1, username: 1 });
 
 module.exports = exports = mongoose.model('User', UserSchema);

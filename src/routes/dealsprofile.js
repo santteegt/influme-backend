@@ -6,7 +6,9 @@ module.exports = api => {
 	api.route('/dealsprofile/filter').get(Dealsprofile.get);
 	api.route('/dealsprofile/:markerId').get(Dealsprofile.getDeals);
 	api.route('/dealsprofile/onedeal/:dealId').get(Dealsprofile.getOneDeal);
-	// api.route('/users/:userId').put(User.put);
+	api.route('/dealsprofile/update/:dealId').put(Dealsprofile.put);
+	api.route('/dealsprofile/filter/hotdeals').get(Dealsprofile.getTrendingDeals);
+
 	// api.route('/markerprofile/').post(Typemarker.post);
 	// api.route('/users/:userId').delete(User.delete);
 };
