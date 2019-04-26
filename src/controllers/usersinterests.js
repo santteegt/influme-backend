@@ -40,6 +40,36 @@ import logger from '../utils/logger';
 	// 		});
 	// };
 
+	exports.list = (req, res) => {
+
+		console.log("Nombre Usuario " + req.params.username);
+
+		Usersinterests.find({})
+		.populate(
+			{
+	  			path: 'userid',
+	  			model: 'User',
+	  			match: {
+			      name: { "$regex": '.*' + req.params.username + '.*', "$options": 'i' }			      
+			    }
+			})
+		.populate({
+	  			path: 'typeid',
+	  			model: 'Typemarker',
+			})
+			.then(
+				interestsResponse => {
+					console.log("Resouesta " + interestsResponse);
+					res.json(interestsResponse);		
+
+				}
+			)
+			.catch(err => {
+				logger.error(err);
+				res.status(422).send(err.errors);
+			});
+	};
+
 	exports.get = (req, res) => {
 
 		// console.log("[*] GET");
@@ -104,41 +134,41 @@ import logger from '../utils/logger';
 // 		});
 // };
 
-// exports.post = (req, res) => {
+exports.post = (req, res) => {
+
+	var userInterestsPost = new Usersinterests(req.body);
+
+	console.log("Controller Intersts " + JSON.stringify(userInterestsPost));
+
+	userInterestsPost.save()
+	.then(userInterestsSave => {
+		res.json(userInterestsSave);
+	})
+	.catch(err => {
+		logger.error(err);
+		res.status(500).send(err);
+	});	
+};
 
 
+exports.delete = (req, res) => {
 
-// 	var dealsToDeals = new Usersdeals(req.body);
-// 	// const data = Object.assign({}, req.body) || {};
-// 	// console.log("[*]" + JSON.stringify(markerp));
+	console.log("BACKEND DELETE " + req.params.userid);
 
-// 	dealsToDeals.save()
-// 		.then(dealuser => {
-// 			res.json(dealuser);
-// 		})
-// 		.catch(err => {
-// 			logger.error(err);
-// 			res.status(500).send(err);
-// 		});
-// };
-
-// exports.delete = (req, res) => {
-// 	User.findByIdAndUpdate(
-// 		{ _id: req.params.user },
-// 		{ active: false },
-// 		{
-// 			new: true
-// 		}
-// 	)
-// 		.then(user => {
-// 			if (!user) {
-// 				return res.sendStatus(404);
-// 			}
-
-// 			res.sendStatus(204);
-// 		})
-// 		.catch(err => {
-// 			logger.error(err);
-// 			res.status(422).send(err.errors);
-// 		});
-// };
+	Usersinterests.deleteMany(
+		{ userid: req.params.userid }
+	)
+		.then(userint => {
+			if (!userint) {
+				return res.sendStatus(404);
+			}
+			const response = {
+        		message: "Todo successfully deleted",
+    		};
+			res.json(response);
+		})
+		.catch(err => {
+			logger.error(err);
+			res.status(422).send(err.errors);
+		});
+};

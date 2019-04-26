@@ -5,7 +5,7 @@ export const UsersinterestsSchema = new Schema({
         userid: {
             type: Schema.Types.ObjectId, ref: 'users'
         },
-        dealid: {
+        typeid: {
             type: Schema.Types.ObjectId, ref: 'typemarker'
         },        
     },

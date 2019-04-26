@@ -39,7 +39,7 @@ export const UserSchema = new Schema(
 			required: true
 		},
 
-		admin: {
+		influencer: {
 			type: Boolean,
 			default: false
 		}
@@ -48,10 +48,10 @@ export const UserSchema = new Schema(
 	{ collection: 'users' }
 );
 
-UserSchema.pre('save', function(next) {
-	if (!this.isNew) {
-		next();
-	}
+// UserSchema.pre('save', function(next) {
+// 	if (!this.isNew) {
+// 		next();
+// 	}
 
 	// email({
 	// 	type: 'welcome',
@@ -64,7 +64,7 @@ UserSchema.pre('save', function(next) {
 	// 		logger.error(err);
 	// 		next();
 	// 	});
-});
+// });
 
 // UserSchema.pre('findOneAndUpdate', function(next) {
 // 	// if (!this._update.recoveryCode) {

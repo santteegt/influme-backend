@@ -1,7 +1,8 @@
 import Usersdeals from '../controllers/usersdeals';
 
 module.exports = api => {
-	// api.route('/usersmarker').get(Usersdeals.list);
+	api.route('/usersdeals/search/:userId').get(Usersdeals.list);
+	// api.route('/usersdeals/search/:userId').get(Usersdeals.get);
 	// api.route('/usersmarker/:userid/:markerid').get(Usersdeals.get);
 	// api.route('/usersmarker/:titlemarker').get(Usersdeals.get);
 

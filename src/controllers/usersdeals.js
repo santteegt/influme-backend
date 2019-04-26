@@ -105,9 +105,49 @@ import logger from '../utils/logger';
 // 		});
 // };
 
+exports.list = (req, res) => {
+	// console.log("[*] GET" + req.params.nameMarker);
+	console.log("[*] GET lista");
+
+	// Markerprofile.findByTitle(req.params.id)
+	Usersdeals.find({userid: req.params.userId}).populate(
+	{
+ 		path: 'dealid',
+ 		model: 'Dealsprofile'
+	})
+	.then(
+			dealslist => {
+				res.json(dealslist);		
+			}
+		)
+		.catch(err => {
+			logger.error(err);
+			res.status(422).send(err.errors);
+		});
+};
+
+// exports.get = (req, res) => {
+
+// 	console.log("USERDEALS " + req.params.userId);
+
+// 	Usersdeals.find({ userid: req.params.userId}
+// 		// )
+// 	// .populate(
+// 	// {
+//  //  		path: 'dealid',
+//  //  		model: 'Dealsprofile'
+// 	// }
+// 	).then( responseuserdeal => {
+// 		res.json(responseuserdeal);
+// 		console.log(res);
+// 	}).catch(err => {
+// 		logger.error(err);
+// 		res.status(422).send(err.errors);
+// 	});
+		
+// };
+
 exports.post = (req, res) => {
-
-
 
 	var dealsToDeals = new Usersdeals(req.body);
 	// const data = Object.assign({}, req.body) || {};

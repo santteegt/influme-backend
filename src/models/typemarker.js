@@ -10,6 +10,10 @@ export const TypemarkerSchema = new Schema({
             type: String, 
             required: true, 
         },                           
+        iconimg: {
+            type: String, 
+            required: true, 
+        },                
     },
     { collection: 'typemarker' }
 );

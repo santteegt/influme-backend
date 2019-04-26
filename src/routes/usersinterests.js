@@ -5,7 +5,8 @@ module.exports = api => {
 	// api.route('/usersmarker/:userid/:markerid').get(Usersdeals.get);
 	// api.route('/usersmarker/:titlemarker').get(Usersdeals.get);
 
-	// api.route('/usersmarker/update/:userid/:markerid').put(Usersdeals.put);
+	api.route('/usersinterests/').post(Usersinterests.post);
 	api.route('/usersinterests/:userid').get(Usersinterests.get);
-	// api.route('/usersmarker/:userfollowId').delete(Usersdeals.delete);
+	api.route('/usersinterests/search/:username').get(Usersinterests.list);
+	api.route('/usersinterests/delete/:userid').delete(Usersinterests.delete);
 };
