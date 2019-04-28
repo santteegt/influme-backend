@@ -70,6 +70,36 @@ import logger from '../utils/logger';
 			});
 	};
 
+	exports.listaux = (req, res) => {
+
+		console.log("Nombre Usuario " + req.params.username);
+
+		Usersinterests.find({})
+		.populate(
+			{
+	  			path: 'userid',
+	  			model: 'User',
+	  			match: {
+			      username: { "$regex": '.*' + req.params.username + '.*', "$options": 'i' }			      
+			    }
+			})
+		.populate({
+	  			path: 'typeid',
+	  			model: 'Typemarker',
+			})
+			.then(
+				interestsResponse => {
+					console.log("Resouesta " + interestsResponse);
+					res.json(interestsResponse);		
+
+				}
+			)
+			.catch(err => {
+				logger.error(err);
+				res.status(422).send(err.errors);
+			});
+	};	
+
 	exports.get = (req, res) => {
 
 		// console.log("[*] GET");

@@ -74,7 +74,7 @@ exports.put = (req, res) => {
 	const data = req.body || {};
 
 	if (data.email && !validator.isEmail(data.email)) {
-		return res.status(422).send('Invalid email address.');
+		return res.json({'error': 'Invalid email address'});
 	}
 
 	// if (data.username && !validator.isAlphanumeric(data.username)) {
@@ -103,7 +103,9 @@ exports.post = (req, res) => {
 	var userPost = new User(req.body);
 
 	if (userPost.email && !validator.isEmail(userPost.email)) {
-		return res.status(422).send('Invalid email address.');
+		// return res.status(422).send('Invalid email address.');
+		return res.json({'error': 'Invalid email address'});
+
 	}
 
 	console.log("Controller " + JSON.stringify(userPost));

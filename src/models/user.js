@@ -30,6 +30,21 @@ export const UserSchema = new Schema(
 			required: true
 		},
 
+		picturehome: {
+			type: String,
+			required: true
+		},
+
+		followers: {
+			type: Number,
+			required: true
+		},
+
+		following: {
+			type: Number,
+			required: true
+		},				
+
 		email: {
 			type: String,
 			lowercase: true,
