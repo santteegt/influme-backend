@@ -147,6 +147,19 @@ exports.list = (req, res) => {
 		
 // };
 
+exports.get = (req, res) => {
+
+	Usersdeals.find({ userid: req.params.userId, dealid: req.params.dealId}
+	).then( responseuserdeal => {
+		res.json(responseuserdeal);
+		console.log(res);
+	}).catch(err => {
+		logger.error(err);
+		res.status(422).send(err.errors);
+	});
+		
+};
+
 exports.post = (req, res) => {
 
 	var dealsToDeals = new Usersdeals(req.body);
