@@ -21,7 +21,7 @@ class App extends React.Component {
         }
       };
 
-    axios.get('http://localhost:3000/typemarker')
+    axios.get('/typemarker')
       .then(response => this.setState({typesm: response.data}));
 
     this.onFormSubmit = this.onFormSubmit.bind(this)
@@ -79,7 +79,7 @@ class App extends React.Component {
   }
   fileUpload(file){
   	console.log(file);
-    const url = 'http://localhost:3000/upload';
+    const url = '/upload';
     const formData = new FormData();
     for(var x = 0; x<file.length; x++) {
         formData.append('file',file[x])
@@ -94,7 +94,7 @@ class App extends React.Component {
     
 }
   rowSave(){
-      const url = 'http://localhost:3000/markerprofile';
+      const url = '/markerprofile';
       const config = {
           headers: {
               'content-type': 'application/json'
@@ -104,7 +104,7 @@ class App extends React.Component {
   }
 
   deleteImages(idImage){
-      const url = 'http://localhost:3000/images/delete/'+idImage;
+      const url = '/images/delete/'+idImage;
       return axios.delete(url);
   }  
 

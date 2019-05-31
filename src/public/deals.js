@@ -15,7 +15,7 @@ class DealsApp extends React.Component{
         }
       };
 
-    axios.get('http://localhost:3000/markerprofile')
+    axios.get('/markerprofile')
       .then(response => this.setState({markers: response.data}));
 
     this.onFormSubmit = this.onFormSubmit.bind(this)
@@ -65,7 +65,7 @@ class DealsApp extends React.Component{
 
   fileUpload(file){
   	console.log(file);
-    const url = 'http://localhost:3000/upload';
+    const url = '/upload';
     const formData = new FormData();
     for(var x = 0; x<file.length; x++) {
         formData.append('file',file[x])
@@ -81,7 +81,7 @@ class DealsApp extends React.Component{
   }
   
   rowSave(){
-      const url = 'http://localhost:3000/dealsprofile';
+      const url = '/dealsprofile';
       const config = {
           headers: {
               'content-type': 'application/json'
@@ -91,7 +91,7 @@ class DealsApp extends React.Component{
   }
 
   deleteImages(idImage){
-      const url = 'http://localhost:3000/images/delete/'+idImage;
+      const url = '/images/delete/'+idImage;
       return axios.delete(url);
   }  
 
