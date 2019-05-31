@@ -130,7 +130,9 @@ exports.post = (req, res) => {
 		})
 		.catch(err => {
 			logger.error(err);
+			res.json({error: err});
 			res.status(500).send(err);
+
 		});
 };
 

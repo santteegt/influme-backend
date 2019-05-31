@@ -1,11 +1,16 @@
 import mongoose from 'mongoose';
-
 import config from '../../config';
 import logger from '../logger';
+
 
 mongoose.Promise = global.Promise;
 
 const connection = mongoose.connect(config.database.uri);
+
+// Grid.mongo = mongoose.mongo;
+
+// Init gfs
+// let gfs;
 
 connection
 	.then(db => {
@@ -27,3 +32,8 @@ connection
 	});
 
 export default connection;
+// export uploadImages = (data) => {
+
+// 	gfs.
+
+// };

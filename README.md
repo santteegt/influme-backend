@@ -57,5 +57,9 @@ $ git add -A
 $ git commit -m "Heroku deploy"
 $ git push heroku master
 ```
+Extras
+npm install --save multer
+npm install multer-gridfs-storage --save
+npm install gridfs-stream --save
 
 

@@ -46,33 +46,7 @@ exports.get = (req, res) => {
 	var todayStart = new Date();
 	todayStart.setHours(0,0,0,0);
 
-	// Dealsprofile.find({markerid: req.params.nameMarker})
-	// Dealsprofile.find({ date_expire: {"$gte": todayStart}})
-
-	// Dealsprofile.find({ date_expire: {"$gte": todayStart}})
-	// 	.then(
-	// 		dealsmarker => {
-	// 			Markerprofile.populate(dealsmarker, {path: "markerid"})
-	// 				.then(dealsmarker1 => {
-	// 				// dealsmarker.markerid = markerid;
-	// 					res.json(dealsmarker1);
- //  						// console.log(dealsmarker1.markerid);
- //  					}
- //  					)
-	// 				.catch(err => {
-	// 					logger.error(err);
-	// 					res.status(422).send(err.errors);
-	// 				});
-	// 			// res.json(dealsmarker);		
-	// 		}
-	// 	)
-	// 	.catch(err => {
-	// 		logger.error(err);
-	// 		res.status(422).send(err.errors);
-	// 	});
-
-
-	Dealsprofile.find({ date_expire: {"$gte": todayStart}, 
+	Dealsprofile.find({ date_expire: {"$gte": todayStart},
 		"$where" : "this.used_tickets < this.total_tickets"}).populate(
 	{
   		path: 'markerid',
@@ -81,16 +55,13 @@ exports.get = (req, res) => {
 			path: 'type',
     		model: 'Typemarker'
   		}
-	}
-	).then( responsemarker => {
+	}).then( responsemarker => {	
 		res.json(responsemarker);
 		console.log(res);
 	}).catch(err => {
 		logger.error(err);
 		res.status(422).send(err.errors);
 	});
-		
-
 
 };
 
@@ -207,6 +178,23 @@ exports.put = (req, res) => {
 		.catch(err => {
 			logger.error(err);
 			res.status(422).send(err.errors);
+		});
+};
+
+exports.post = (req, res) => {
+	var dealsp = new Dealsprofile(req.body);
+	// const data = Object.assign({}, req.body) || {};
+	console.log("[*]" + JSON.stringify(dealsp));
+
+	dealsp.save()
+		.then(dealsresponse => {
+			res.json(dealsresponse);
+		})
+		.catch(err => {
+			logger.error(err);
+			res.json({error: err});
+			res.status(500).send(err);
+
 		});
 };
 

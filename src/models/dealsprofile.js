@@ -3,12 +3,12 @@ import mongoose, { Schema } from 'mongoose';
 
 export const DealsprofileSchema = new Schema({
         conditions: {
-        	type: String, 
-        	required: true, 
+            type: String, 
+            required: true, 
         },                  
         img: {
-        	type: String, 
-        	required: true, 
+            type: String, 
+            required: true,
         },        
         markerid: {
             type: Schema.Types.ObjectId, ref: 'markerprofile'
