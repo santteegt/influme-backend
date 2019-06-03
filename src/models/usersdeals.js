@@ -1,12 +1,12 @@
-import mongoose, { Schema } from 'mongoose';
+const mongoose = require('mongoose');
 
 
-export const UsersdealsSchema = new Schema({
+const UsersdealsSchema = new mongoose.Schema({
         userid: {
-            type: Schema.Types.ObjectId, ref: 'users'
+            type: mongoose.Schema.Types.ObjectId, ref: 'users'
         },
         dealid: {
-            type: Schema.Types.ObjectId, ref: 'dealsprofile'
+            type: mongoose.Schema.Types.ObjectId, ref: 'dealsprofile'
         },        
     },
     { collection: 'usersdeals' }

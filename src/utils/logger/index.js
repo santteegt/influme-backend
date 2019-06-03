@@ -1,7 +1,7 @@
-import winston from 'winston';
+const winston =require('winston');
 // import winstonPapertrail from 'winston-papertrail';
 
-import config from '../../config';
+const config =require('../../config');
 
 let logger;
 
@@ -19,4 +19,4 @@ if (config.env == 'test' || config.env == 'local' || config.env == 'development'
 	// });
 }
 
-export default logger;
+module.exports = logger;

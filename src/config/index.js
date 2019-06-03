@@ -1,9 +1,9 @@
 require('dotenv').config({ path: './.env' });
 
-export default {
+module.exports = {
 	env: process.env.NODE_ENV || 'development',
 	server: {
-		port: 3000
+		port: 3001
 	},
 	logger: {
 		host: process.env.LOGGER_HOST, // Papertrail Logging Host
@@ -13,3 +13,4 @@ export default {
 		uri: !process.env.NODE_ENV ? "mongodb://localhost/influme":process.env.MONGODB_URI
 	}
 };
+// export default result;

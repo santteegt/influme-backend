@@ -1,4 +1,4 @@
-import Usersinterests from '../controllers/usersinterests';
+const Usersinterests = require('../controllers/usersinterests');
 
 module.exports = api => {
 	// api.route('/usersmarker').get(Usersdeals.list);

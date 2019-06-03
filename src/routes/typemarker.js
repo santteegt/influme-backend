@@ -1,4 +1,4 @@
-import Typemarker from '../controllers/typemarker';
+const Typemarker = require('../controllers/typemarker');
 
 module.exports = api => {
 	api.route('/typemarker').get(Typemarker.list);

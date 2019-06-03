@@ -1,10 +1,10 @@
 // import async from 'async';
 // import validator from 'validator';
 
-import Usersinterests from '../models/usersinterests';
+const Usersinterests  = require('../models/usersinterests');
 // import Follow from '../models/follow';
 
-import logger from '../utils/logger';
+const logger  = require('../utils/logger');
 
 // exports.list = (req, res) => {
 // 	const params = req.params || {};

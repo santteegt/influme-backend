@@ -4,8 +4,8 @@
   "description": "Influme Backend",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js --exec babel-node --presets babel-preset-env",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install && npm run build" 
   },
   "repository": {
     "type": "git",
@@ -32,17 +32,5 @@
     "validator": "^10.10.0",
     "winston": "^3.1.0",
     "winston-papertrail": "^1.0.5"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^8.0.4",
-    "babel-plugin-transform-regenerator": "^6.26.0",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-2": "^6.24.1",
-    "nodemon": "^1.18.9",
-    "prettier": "^1.10.2",
-    "prettierrc": "^0.0.0-5"
   }
 }

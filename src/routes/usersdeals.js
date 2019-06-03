@@ -1,4 +1,4 @@
-import Usersdeals from '../controllers/usersdeals';
+const Usersdeals = require('../controllers/usersdeals');
 
 module.exports = api => {
 	api.route('/usersdeals/search/:userId').get(Usersdeals.list);

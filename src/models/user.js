@@ -1,13 +1,13 @@
-import mongoose, { Schema } from 'mongoose';
-import bcrypt from 'mongoose-bcrypt';
-import timestamps from 'mongoose-timestamp';
-import mongooseStringQuery from 'mongoose-string-query';
+const mongoose  = require('mongoose');
+const bcrypt  = require('mongoose-bcrypt');
+const timestamps  = require('mongoose-timestamp');
+const mongooseStringQuery  = require('mongoose-string-query');
 
-import logger from '../utils/logger';
+const logger  = require('../utils/logger');
 // import email from '../utils/email';
 // import events from '../utils/events';
 
-export const UserSchema = new Schema(
+const UserSchema = new mongoose.Schema(
 	{
 		username: {
 			type: String,

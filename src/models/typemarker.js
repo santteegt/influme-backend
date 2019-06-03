@@ -1,7 +1,7 @@
-import mongoose, { Schema } from 'mongoose';
+const mongoose  = require('mongoose');
 
 
-export const TypemarkerSchema = new Schema({
+const TypemarkerSchema = new mongoose.Schema({
         description: {
         	type: String, 
         	required: true, 

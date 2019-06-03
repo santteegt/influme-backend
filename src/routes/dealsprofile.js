@@ -1,4 +1,4 @@
-import Dealsprofile from '../controllers/dealsprofile';
+const Dealsprofile = require('../controllers/dealsprofile');
 
 module.exports = api => {
 	api.route('/dealsprofile').get(Dealsprofile.list);

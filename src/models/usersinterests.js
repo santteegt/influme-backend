@@ -1,12 +1,12 @@
-import mongoose, { Schema } from 'mongoose';
+const mongoose = require('mongoose');
 
 
-export const UsersinterestsSchema = new Schema({
+const UsersinterestsSchema = new mongoose.Schema({
         userid: {
-            type: Schema.Types.ObjectId, ref: 'users'
+            type: mongoose.Schema.Types.ObjectId, ref: 'users'
         },
         typeid: {
-            type: Schema.Types.ObjectId, ref: 'typemarker'
+            type: mongoose.Schema.Types.ObjectId, ref: 'typemarker'
         },        
     },
     { collection: 'usersinterests' }

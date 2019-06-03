@@ -1,12 +1,12 @@
-import mongoose, { Schema } from 'mongoose';
+const mongoose = require('mongoose');
 
 
-export const UsersmarkerSchema = new Schema({
+const UsersmarkerSchema = new mongoose.Schema({
         userid: {
-            type: Schema.Types.ObjectId, ref: 'users'
+            type: mongoose.Schema.Types.ObjectId, ref: 'users'
         },
         markerid: {
-            type: Schema.Types.ObjectId, ref: 'users'
+            type: mongoose.Schema.Types.ObjectId, ref: 'users'
         },        
         status:{
         	type: Boolean, 

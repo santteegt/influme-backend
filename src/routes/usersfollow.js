@@ -1,4 +1,4 @@
-import Usersfollow from '../controllers/usersfollow';
+const Usersfollow = require('../controllers/usersfollow');
 
 module.exports = api => {
 	// api.route('/usersmarker').get(Usersmarker.list);

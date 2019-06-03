@@ -3,15 +3,14 @@
 	"version": "0.0.1",
 	"description": "Influme Backend Server",
 	"scripts": {
-		"start": "export NODE_ENV=production && cd dist && node server.js",
+		"start": "node src/server.js",
 		"watch": "nodemon start",
 		"build": "sh build.sh"
 	},
 	"license": "Apache-2.0",
 	"dependencies": {
-		"babel": "^6.23.0",
-		"babel-cli": "^6.26.0",
-		"babel-preset-env": "^1.6.1",
+		"cors": "^2.8.5",
+		"express": "^4.17.1",
 		"gridfs-stream": "^1.1.1",
 		"multer": "^1.4.1",
 		"multer-gridfs-storage": "^3.2.3"

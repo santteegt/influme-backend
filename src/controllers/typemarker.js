@@ -1,10 +1,10 @@
 // import async from 'async';
 // import validator from 'validator';
 
-import Typemarker from '../models/typemarker';
+const Typemarker  = require('../models/typemarker');
 // import Follow from '../models/follow';
 
-import logger from '../utils/logger';
+const logger  = require('../utils/logger');
 
 // exports.list = (req, res) => {
 // 	const params = req.params || {};

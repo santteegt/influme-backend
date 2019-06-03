@@ -1,6 +1,6 @@
-import Usersfollow from '../models/usersfollow';
+const Usersfollow  = require('../models/usersfollow');
 
-import logger from '../utils/logger';
+const logger  = require('../utils/logger');
 
 exports.get = (req, res) => {
 

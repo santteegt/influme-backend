@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
-import config from '../../config';
-import logger from '../logger';
+const mongoose = require('mongoose');
+const config  = require('../../config');
+const logger  = require( '../logger');
 
 
 mongoose.Promise = global.Promise;
@@ -31,7 +31,7 @@ connection
 		}
 	});
 
-export default connection;
+module.exports = connection;
 // export uploadImages = (data) => {
 
 // 	gfs.

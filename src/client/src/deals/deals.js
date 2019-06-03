@@ -1,4 +1,8 @@
-class DealsApp extends React.Component{
+import React, { Component } from 'react';
+import axios from 'axios';
+
+
+class DealsApp extends Component{
 
   constructor(props) {
     super(props);
@@ -41,7 +45,11 @@ class DealsApp extends React.Component{
       for(var x=0; x<response.data.file.length; x++){
         idImages.push(response.data.file[x]);
       }
-      this.state.form.img = idImages[0];
+      // this.state.form.img = idImages[0];
+
+      let storeImg = this.state;
+      storeImg.form['img'] = idImages[0];
+      this.setState(storeImg);               
 
       this.rowSave().then((responseFinal)=>{
         // console.log(responseFinal.data);
@@ -101,7 +109,7 @@ class DealsApp extends React.Component{
     return (
       <form onSubmit={this.onFormSubmit}>
           <label>Store</label>
-          <select name="markerid" value={form.markerid} onChange={this.handleChange}>
+          <select name="markerid" value={form.markerid} onChange={this.handleChange} required>
             <option value="Select..">Select..</option>
             {(this.state.markers || []).map(item => (
                 <option key={item.title} value={item._id}>{item.title}</option>
@@ -110,19 +118,19 @@ class DealsApp extends React.Component{
           <br/>
           <br/>      
           <label>Conditions</label>
-          <input name="conditions" value={form.conditions} type="text" onChange={this.handleChange}/>       
+          <input name="conditions" value={form.conditions} type="text" onChange={this.handleChange} required/>       
           <br/>
           <br/>
           <label>Image Deal </label>
-          <input type="file" onChange={this.onChange} multiple/>
+          <input type="file" onChange={this.onChange} multiple required/>
           <br/>
           <br/>
           <label>Total tickets</label>
-          <input name="total_tickets" value={form.total_tickets} type="text" onChange={this.handleChange}/>       
+          <input name="total_tickets" value={form.total_tickets} type="number" onChange={this.handleChange} required/>       
           <br/>
           <br/>
           <label>Date Expire</label>
-          <input name="date_expire" value={form.date_expire} type="text" onChange={this.handleChange}/>       
+          <input name="date_expire" value={form.date_expire} type="text" onChange={this.handleChange} required/>       
           <br/>
           <br/>
           <button type="submit">Save</button>
@@ -132,4 +140,5 @@ class DealsApp extends React.Component{
   }              
 }
 
-ReactDOM.render(<DealsApp />, document.getElementById('root'))
+// ReactDOM.render(<DealsApp />, document.getElementById('root'))
+export default DealsApp

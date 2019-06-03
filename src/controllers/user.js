@@ -1,10 +1,10 @@
-import async from 'async';
-import validator from 'validator';
+const async  = require('async');
+const validator  = require('validator');
 
-import User from '../models/user';
+const User  = require('../models/user');
 // import Follow from '../models/follow';
 
-import logger from '../utils/logger';
+const logger  = require('../utils/logger');
 
 // exports.list = (req, res) => {
 // 	const params = req.params || {};

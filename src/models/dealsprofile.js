@@ -1,7 +1,8 @@
-import mongoose, { Schema } from 'mongoose';
+const mongoose = require('mongoose');
+// const Schema = require('mongoose');
 
 
-export const DealsprofileSchema = new Schema({
+const DealsprofileSchema = new mongoose.Schema({
         conditions: {
             type: String, 
             required: true, 
@@ -11,7 +12,7 @@ export const DealsprofileSchema = new Schema({
             required: true,
         },        
         markerid: {
-            type: Schema.Types.ObjectId, ref: 'markerprofile'
+            type: mongoose.Schema.Types.ObjectId, ref: 'markerprofile'
         },
         total_tickets: {
             type: Number, 

@@ -1,10 +1,10 @@
 // import async from 'async';
 // import validator from 'validator';
 
-import Markerprofile from '../models/markerprofile';
+const Markerprofile  = require('../models/markerprofile');
 // import Follow from '../models/follow';
 
-import logger from '../utils/logger';
+const logger  = require('../utils/logger');
 
 // exports.list = (req, res) => {
 // 	const params = req.params || {};

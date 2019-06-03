@@ -1,4 +1,4 @@
-import Markerprofile from '../controllers/markerprofile';
+const Markerprofile = require('../controllers/markerprofile');
 
 module.exports = api => {
 	api.route('/markerprofile').get(Markerprofile.list);

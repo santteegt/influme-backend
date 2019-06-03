@@ -1,7 +1,7 @@
-import mongoose, { Schema } from 'mongoose';
+const mongoose  = require('mongoose');
 
 
-export const MarkerprofileSchema = new Schema({
+const MarkerprofileSchema = new mongoose.Schema({
         title: {
             type: String, 
             required: true, 
@@ -11,7 +11,7 @@ export const MarkerprofileSchema = new Schema({
             required: true
         },
         type: {
-            type: Schema.Types.ObjectId, ref: 'typemarker'
+            type: mongoose.Schema.Types.ObjectId, ref: 'typemarker'
         },
 
         lat: {

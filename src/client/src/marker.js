@@ -1,4 +1,9 @@
-class App extends React.Component {
+import React, { Component } from 'react';
+import axios from 'axios';
+
+
+
+class Marker extends Component {
 
   constructor(props) {
     super(props);
@@ -47,7 +52,12 @@ class App extends React.Component {
       for(var x=0; x<response.data.file.length; x++){
         idImages.push(response.data.file[x]);
       }
-      this.state.form.images = idImages;
+      // this.state.form.images = idImages;
+      // this.setState({this.state.form.images = idImages}});
+
+      let storeImg = this.state;
+      storeImg.form['images'] = idImages;
+      this.setState(storeImg);         
 
       this.rowSave().then((responseFinal)=>{
         // console.log(responseFinal.data);
@@ -78,7 +88,7 @@ class App extends React.Component {
     this.setState({file:e.target.files})
   }
   fileUpload(file){
-  	console.log(file);
+    console.log(file);
     const url = '/upload';
     const formData = new FormData();
     for(var x = 0; x<file.length; x++) {
@@ -114,15 +124,15 @@ class App extends React.Component {
     return (
       <form onSubmit={this.onFormSubmit}>
           <label>Store name</label>
-          <input name="title" value={form.namestore} type="text" onChange={this.handleChange}/>       
+          <input name="title" value={form.namestore} type="text" onChange={this.handleChange} required/>       
           <br/>
           <br/>
           <label>Short description</label>
-          <input name="shortdescription" value={form.shortdescription} type="text" onChange={this.handleChange}/>       
+          <input name="shortdescription" value={form.shortdescription} type="text" onChange={this.handleChange} required/>       
           <br/>
           <br/>             
           <label>Store type</label>
-          <select name="type" value={form.type} onChange={this.handleChange}>
+          <select name="type" value={form.type} onChange={this.handleChange} required>
             <option value="Select..">Select..</option>
             {(this.state.typesm || []).map(item => (
                 <option key={item.description} value={item._id}>{item.description}</option>
@@ -131,23 +141,23 @@ class App extends React.Component {
           <br/>
           <br/>      
           <label>Store images </label>
-          <input type="file" onChange={this.onChange} multiple/>
+          <input type="file" onChange={this.onChange} multiple required/>
           <br/>
           <br/>
           <label>Latitude</label>
-              <input name="lat" value={form.lat} type="text" onChange={this.handleChange}/>       
+              <input name="lat" value={form.lat} type="number" onChange={this.handleChange} required/>       
               <br/>
               <br/>
           <label>Longitude</label>
-              <input name="lon" value={form.lon} type="text" onChange={this.handleChange}/>       
+              <input name="lon" value={form.lon} type="number" onChange={this.handleChange} required/>       
               <br/>
               <br/>
           <label>Web Page</label>
-              <input name="web" value={form.web} type="text" onChange={this.handleChange}/>       
+              <input name="web" value={form.web} type="text" onChange={this.handleChange} required/>       
               <br/>
               <br/>
           <label>Adderss</label>
-              <input name="address" value={form.address} type="text" onChange={this.handleChange}/>       
+              <input name="address" value={form.address} type="text" onChange={this.handleChange} required/>       
               <br/>
               <br/>          
 
@@ -158,4 +168,5 @@ class App extends React.Component {
   }              
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+// ReactDOM.render(<Marker />, document.getElementById('root'))
+export default Marker;

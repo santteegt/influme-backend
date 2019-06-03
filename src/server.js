@@ -1,30 +1,24 @@
-import fs from 'fs';
-import path from 'path';
-import express from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import winston from 'winston';
-import compression from 'compression';
-import expressWinston from 'express-winston';
-import winstonPapertrail from 'winston-papertrail';
-//import Calendar from 'react-calendar';
-// import jwt from 'express-jwt';
-
-import config from './config';
-import logger from './utils/logger';
-import mongoose from 'mongoose';
-import GridFsStorage from 'multer-gridfs-storage';
-import Grid from 'gridfs-stream';
-import multer from 'multer';
+const express = require('express');
+const fs  = require('fs');
+const path = require('path');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+// const compression = require('compression');
+const config = require('./config');
+const logger = require('./utils/logger');
+const mongoose = require('mongoose');
+const GridFsStorage = require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
+const multer = require('multer');
 
 
 const api = express();
 
 api.use(cors());
-api.use(compression());
+// api.use(compression());
 api.use(bodyParser.urlencoded({ extended: true }));
 api.use(bodyParser.json());
-api.use(express.static(path.join(__dirname, 'public')));
+// api.use(express.static(path.join(__dirname, 'public')));
 
 // api.use(
 // 	jwt({ secret: config.jwt.secret }).unless({
@@ -59,17 +53,17 @@ api.use(express.static(path.join(__dirname, 'public')));
 
 api.set('port', process.env.PORT || config.server.port)
 
-api.get('/admin', (req, res) => {
-   res.sendFile(path.join(__dirname, './public/admin.html'));
-});
+// api.get('/admin', (req, res) => {
+//    res.sendFile(path.join(__dirname, './public/admin.html'));
+// });
 
-api.get('/deals', (req, res) => {
-   res.sendFile(path.join(__dirname, './public/deals.html'));
-});
+// api.get('/deals', (req, res) => {
+//    res.sendFile(path.join(__dirname, './public/deals.html'));
+// });
 
-api.get('/home', (req, res) => {
-   res.sendFile(path.join(__dirname, './public/home.html'));
-});
+// api.get('/home', (req, res) => {
+//    res.sendFile(path.join(__dirname, './public/home.html'));
+// });
 
 //************************************
 

@@ -1,4 +1,4 @@
-import User from '../controllers/user';
+const User = require('../controllers/user');
 
 module.exports = api => {
 	// api.route('/users').get(User.list);

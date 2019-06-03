@@ -1,12 +1,12 @@
-// import async from 'async';
-// import validator from 'validator';
+// const async from 'async';
+// const validator from 'validator';
 
-import Dealsprofile from '../models/dealsprofile';
-import Markerprofile from '../models/markerprofile';
-import Typemarker from '../models/typemarker';
-// import Follow from '../models/follow';
+const Dealsprofile = require('../models/dealsprofile');
+const Markerprofile = require('../models/markerprofile');
+const Typemarker  = require('../models/typemarker');
+// const Follow from '../models/follow';
 
-import logger from '../utils/logger';
+const logger  = require('../utils/logger');
 
 // exports.list = (req, res) => {
 // 	const params = req.params || {};
