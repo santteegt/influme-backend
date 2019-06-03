@@ -18,7 +18,7 @@ api.use(cors());
 // api.use(compression());
 api.use(bodyParser.urlencoded({ extended: true }));
 api.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'src/client/build')));
+api.use(express.static(path.join(__dirname, 'src/client/build')));
 
 // api.use(express.static(path.join(__dirname, 'public')));
 
@@ -53,7 +53,7 @@ app.use(express.static(path.join(__dirname, 'src/client/build')));
 // 	})
 // );
 
-app.get('*', (req, res) => {
+api.get('*', (req, res) => {
   res.sendFile(path.join(__dirname+'/src/client/build/index.html'));
 });
 
