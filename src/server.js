@@ -18,6 +18,8 @@ api.use(cors());
 // api.use(compression());
 api.use(bodyParser.urlencoded({ extended: true }));
 api.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 // api.use(express.static(path.join(__dirname, 'public')));
 
 // api.use(
