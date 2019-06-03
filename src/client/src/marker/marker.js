@@ -68,7 +68,8 @@ class Marker extends Component {
             })            
           }
         }
-        alert(JSON.stringify(responseFinal.data));
+        // alert(JSON.stringify(responseFinal.data));
+        alert("Data stored correctly!!!");
 
 
       })
