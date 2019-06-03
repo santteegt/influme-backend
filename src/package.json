@@ -4,8 +4,9 @@
   "description": "Influme Backend",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "heroku-postbuild": "cd client && npm install && npm run build" 
+    "start": "export NODE_ENV=production && node server.js",
+    "watch": "nodemon start",
+    "build": "sh build.sh"
   },
   "repository": {
     "type": "git",
