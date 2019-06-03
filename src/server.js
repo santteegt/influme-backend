@@ -53,6 +53,10 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 // 	})
 // );
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
+
 api.set('port', process.env.PORT || config.server.port)
 
 // api.get('/admin', (req, res) => {
