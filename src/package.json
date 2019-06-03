@@ -6,7 +6,8 @@
   "scripts": {
     "start": "export NODE_ENV=production && node server.js",
     "watch": "nodemon start",
-    "build": "sh build.sh"
+    "build": "sh build.sh",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
