@@ -3,7 +3,7 @@ require('dotenv').config({ path: './.env' });
 module.exports = {
 	env: process.env.NODE_ENV || 'development',
 	server: {
-		port: 3001
+		port: 3000
 	},
 	logger: {
 		host: process.env.LOGGER_HOST, // Papertrail Logging Host
