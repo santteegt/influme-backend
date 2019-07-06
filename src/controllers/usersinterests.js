@@ -123,6 +123,25 @@ const logger  = require('../utils/logger');
 			});
 	};
 
+	exports.getFull = (req, res) => {
+
+		Usersinterests.find({userid: req.params.userid})
+			.populate(
+			{
+		  		path: 'typeid',
+		  		model: 'Typemarker'
+			})
+			.then(
+				interestsResponse => {
+					res.json(interestsResponse);		
+				}
+			)
+			.catch(err => {
+				logger.error(err);
+				res.status(422).send(err.errors);
+			});
+	};	
+
 // exports.get = (req, res) => {
 
 // 		// Usersdeals.findByTitle(req.params.id)

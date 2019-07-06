@@ -34,12 +34,27 @@ mkdir ./data_db
 mongod --dbpath ./data_db
 
 ```
-## Deploy server for development
+## Deploy Backend
 
 ```
 $ cd src
-$ npm run dev
+$ npm start
 ```
+
+## Deploy Client React
+
+```
+$ cd src/client
+$ npm start
+```
+
+
+## Dev deployment
+
+$ git checkout -b wreact
+$ git add -A
+$ git commit -m "Heroku deploy"
+$ git push origin wreact
 
 ## Production deployment
 
@@ -55,11 +70,12 @@ To deploy commit/push any change with any commit message
 $ heroku login
 $ git add -A
 $ git commit -m "Heroku deploy"
-$ git push heroku master
+$ git push heroku wreact:master
 ```
-Extras
+## Extras
+```
 npm install --save multer
 npm install multer-gridfs-storage --save
 npm install gridfs-stream --save
-
+```
 

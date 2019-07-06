@@ -2,6 +2,45 @@ const Usersfollow  = require('../models/usersfollow');
 
 const logger  = require('../utils/logger');
 
+
+exports.getFollowing = (req, res) => {
+
+	Usersfollow.find({userid: req.params.userid, status: true}).populate(
+		{
+	  		path: 'useridfollow',
+	  		model: 'User'
+		})
+		.then(
+			usersfollow => {
+				console.log("{*} Response " +usersfollow);
+				res.json(usersfollow);		
+			}
+		)
+		.catch(err => {
+			logger.error(err);
+			res.status(422).send(err.errors);
+		});
+};
+
+exports.getFollowers = (req, res) => {
+
+	Usersfollow.find({useridfollow: req.params.userid, status: true}).populate(
+		{
+	  		path: 'userid',
+	  		model: 'User'
+		})
+		.then(
+			usersfollow => {
+				console.log("{*} Response " +usersfollow);
+				res.json(usersfollow);		
+			}
+		)
+		.catch(err => {
+			logger.error(err);
+			res.status(422).send(err.errors);
+		});
+};
+
 exports.get = (req, res) => {
 
 	Usersfollow.find({userid: req.params.userid, useridfollow: req.params.useridfollow})

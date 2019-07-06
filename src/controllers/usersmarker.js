@@ -6,6 +6,29 @@ const Usersmarker  = require('../models/usersmarker');
 
 const logger  = require('../utils/logger');
 
+
+exports.getFollowingShops = (req, res) => {
+
+	Usersmarker.find({userid: req.params.userid, status: true}).populate(
+		{
+	  		path: 'markerid',
+	  		model: 'Markerprofile',
+	  		populate: {
+				path: 'type',
+    			model: 'Typemarker'
+  			}
+		})
+		.then(
+			shopsfollow => {
+				console.log("{*} Response " +shopsfollow);
+				res.json(shopsfollow);		
+			}
+		)
+		.catch(err => {
+			logger.error(err);
+			res.status(422).send(err.errors);
+		});
+};
 // exports.list = (req, res) => {
 // 	const params = req.params || {};
 // 	const query = req.query || {};
