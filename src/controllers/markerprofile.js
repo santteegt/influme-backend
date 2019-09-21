@@ -67,8 +67,7 @@ exports.get = (req, res) => {
 		});
 };
 
-
-exports.getInterests = (req, res) => {
+exports.interests_list = (req, res) => {
 
 	// var markerInterest = new Markerprofile(req.body);
 	var markerInterest = req.params.idstypes.split(",");;
@@ -94,6 +93,7 @@ exports.getInterests = (req, res) => {
 			res.status(422).send(err.errors);
 		});
 };
+
 
 
 exports.put = (req, res) => {
@@ -130,11 +130,34 @@ exports.post = (req, res) => {
 		})
 		.catch(err => {
 			logger.error(err);
-			res.json({error: err});
+			// res.json({error: err});
 			res.status(500).send(err);
 
 		});
 };
+
+/*
+*
+* Consultas React
+*/
+
+exports.business_list = (req, res) => {
+
+	Markerprofile.find({}).populate(
+	{
+  		path: 'type',
+  		model: 'Typemarker'
+	}).then(
+			marker => {
+				res.json(marker);		
+			}
+		)
+		.catch(err => {
+			logger.error(err);
+			res.status(422).send(err.errors);
+		});
+};
+
 
 // exports.delete = (req, res) => {
 // 	User.findByIdAndUpdate(

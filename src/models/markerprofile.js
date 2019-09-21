@@ -6,6 +6,12 @@ const MarkerprofileSchema = new mongoose.Schema({
             type: String, 
             required: true, 
         },
+        
+        facebookid: {
+            type: String, 
+            required: true, 
+        },
+
         instagramid: {
             type: String, 
             required: true, 

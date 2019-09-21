@@ -3,10 +3,18 @@ const mongoose = require('mongoose');
 
 
 const DealsprofileSchema = new mongoose.Schema({
+        title: {
+            type: String, 
+            required: true, 
+        },    
         conditions: {
             type: String, 
             required: true, 
         },                  
+        hotdeal: {
+            type: String, 
+            required: true,
+        },        
         img: {
             type: String, 
             required: true,

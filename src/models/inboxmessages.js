@@ -7,9 +7,13 @@ const InboxmessagesSchema = new mongoose.Schema({
             type: String, 
             required: true, 
         },  
-        hour: {
-            type: String, 
+        datepost: {
+            type: Date, 
             required: true, 
+        },
+        expirationdate:{
+            type: Date, 
+            required: true,
         },
         description: {
             type: String, 
@@ -18,6 +22,10 @@ const InboxmessagesSchema = new mongoose.Schema({
         dealid: {
             type: mongoose.Schema.Types.ObjectId, ref: 'dealsprofile'
         },
+        enabled: {
+            type: Boolean, 
+            required: true,            
+        }
                         
     },
     { collection: 'inboxmessages' }

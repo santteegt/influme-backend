@@ -26,6 +26,21 @@ const logger  = require('../utils/logger');
 // 		});
 // };
 
+exports.list_by_business = (req, res) => {
+	
+	Dealsprofile.find({markerid: req.params.bussinesid})
+
+		.then(
+			dealsmarker => {
+				res.json(dealsmarker);		
+			}
+		)
+		.catch(err => {
+			logger.error(err);
+			res.status(422).send(err.errors);
+		});
+};
+
 exports.list = (req, res) => {
 	
 	Dealsprofile.find({})
@@ -40,6 +55,27 @@ exports.list = (req, res) => {
 			res.status(422).send(err.errors);
 		});
 };
+
+
+
+exports.get_deals_available_by_marker = (req, res) => {
+
+	var todayStart = new Date();
+	todayStart.setHours(0,0,0,0);
+
+	Dealsprofile.find({ date_expire: {"$gte": todayStart},
+		"$where" : "this.used_tickets < this.total_tickets"})
+
+	.then( responseDeals => {	
+		res.json(responseDeals);
+		console.log(res);
+	}).catch(err => {
+		logger.error(err);
+		res.status(422).send(err.errors);
+	});
+
+};
+
 
 exports.get = (req, res) => {
 
@@ -106,7 +142,8 @@ exports.getTrendingDeals = (req, res) => {
 	Dealsprofile.find(
 		{
 			"$where" : "this.used_tickets < this.total_tickets",
-			used_tickets: {"$gt": 6},
+			// used_tickets: {"$gt": 6},
+			hotdeal: "Yes",
 			date_expire: {"$gte": todayStart}
 		}
 	).populate(
@@ -153,6 +190,25 @@ exports.getOneDeal = (req, res) => {
 		
 };
 
+exports.get_dealandbusiness = (req, res) => {
+
+
+	Dealsprofile.findById(req.params.dealId).populate(
+	{
+  		path: 'markerid',
+  		model: 'Markerprofile',
+	}
+	)
+	.then(deal => {
+		res.json(deal);
+	})
+	.catch(err => {
+		logger.error(err);
+		res.status(422).send(err.errors);
+	});
+		
+};
+
 exports.put = (req, res) => {
 
 	const data = req.body || {};
@@ -192,9 +248,21 @@ exports.post = (req, res) => {
 		})
 		.catch(err => {
 			logger.error(err);
-			res.json({error: err});
+			// res.json({error: err});
 			res.status(500).send(err);
 
+		});
+};
+
+exports.delete = (req, res) => {
+	Dealsprofile.findOneAndDelete({_id: req.params.dealid})
+		.then(dealqr => {
+
+			res.sendStatus(204);
+		})
+		.catch(err => {
+			logger.error(err);
+			res.status(422).send(err.errors);
 		});
 };
 

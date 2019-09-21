@@ -54,6 +54,11 @@ const UserSchema = new mongoose.Schema(
 			required: true
 		},
 
+		approvedinfluencer: {
+			type: Boolean,						
+			required: false
+		},
+
 		influencer: {
 			type: Boolean,
 			default: false

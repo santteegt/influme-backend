@@ -124,6 +124,8 @@ api.get('/image/:filename', function(req, res){
                 responseMessage: "error"
             });
         }
+
+        // console.log("Files *** " + JSON.stringify(files[0]));
         /** create read stream */
         var readstream = gfs.createReadStream({
             filename: files[0].filename,
@@ -139,13 +141,37 @@ api.get('/image/:filename', function(req, res){
             const fbuf = Buffer.concat(bufs);
             const base64 = fbuf.toString('base64');
             // console.log(base64);
-            res.send({"imagesource": base64});
+            res.send({"imagesource": base64, "type": files[0].contentType, "filename": files[0].filename});
 
         });
 
     });
 
 });
+
+
+api.delete('/images/delete/:id', (req, res) => {
+  // gfs.remove({ _id: req.params.id, root: 'uploads' }, (err, gridStore) => {
+
+
+  //   if (err) {
+  //     return res.status(404).json({ err: err });
+  //   }
+
+  //   console.log('success');
+
+  //   // res.redirect('/');
+    
+  // });
+
+
+  gfs.remove({ filename: req.params.id, root: 'uploads' }, (err) => {
+    if (err) return res.status(500).json({ success: false })
+      return res.json({ success: true });
+    })
+
+});
+
 
 
 //************************************

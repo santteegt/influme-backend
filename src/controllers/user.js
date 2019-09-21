@@ -24,6 +24,51 @@ const logger  = require('../utils/logger');
 // 		});
 // };
 
+
+
+exports.get_if_influencer = (req, res) => {
+
+	User.find({ _id: req.params.userId })
+		.then(
+			dataUser => {
+				res.json(dataUser);		
+			}
+		)
+		.catch(err => {
+			logger.error(err);
+			res.status(422).send(err.errors);
+		});
+};
+
+exports.all_users = (req, res) => {	
+
+	User.find({})
+		.then(
+			dataUser => {
+				res.json(dataUser);		
+			}
+		)
+		.catch(err => {
+			logger.error(err);
+			res.status(422).send(err.errors);
+		});
+};
+
+exports.all_users_request = (req, res) => {	
+
+	User.find({ influencer: true, approvedinfluencer: null })
+		.then(
+			dataUser => {
+				res.json(dataUser);		
+			}
+		)
+		.catch(err => {
+			logger.error(err);
+			res.status(422).send(err.errors);
+		});
+};
+
+
 exports.list = (req, res) => {
 
 	console.log("[*] GET" + req.params.username);
