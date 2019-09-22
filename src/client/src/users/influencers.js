@@ -24,10 +24,13 @@ class Influencers extends Component {
 
 
   handleClick(userId, idClick) {
-  
+
   	
   	this.setResponseUser(userId,idClick).then((responseUser)=>{
   		console.log(responseUser);
+
+      window.location.reload(false);
+
   	})
     .catch( error => {
 
@@ -41,7 +44,7 @@ class Influencers extends Component {
           console.log(error.message);
 
         }
-
+        window.location.reload(false);
     });    	
 
   }

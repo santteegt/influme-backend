@@ -76,6 +76,7 @@ class NewDeal extends Component {
 
           console.log(responseFinal);
           this.generateCodeqr(responseFinal.data._id, responseFinal.data.total_tickets, responseFinal.data.img);
+          this.props.history.push('/index');
 
         })
         .catch( error => {
@@ -110,6 +111,8 @@ class NewDeal extends Component {
               //   })            
 
             }
+
+            this.props.history.push('/index');
 
         });        
         

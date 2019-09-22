@@ -29,6 +29,7 @@ class Inbox extends Component {
   	
   	this.setResponseUser(userId,idClick).then((responseUser)=>{
   		console.log(responseUser);
+      window.location.reload(false);
   	})
     .catch( error => {
 
@@ -42,6 +43,7 @@ class Inbox extends Component {
           console.log(error.message);
 
         }
+        window.location.reload(false);
 
     });    	
 

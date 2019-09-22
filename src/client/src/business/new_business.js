@@ -105,6 +105,8 @@ class Newbusiness extends Component {
         // }
         // alert(JSON.stringify(responseFinal.data));
         console.log(responseFinal);
+        
+        this.props.history.push('/index');
         // alert("Data stored correctly!!!");
 
 
@@ -136,6 +138,8 @@ class Newbusiness extends Component {
               }
 
             }
+
+            this.props.history.push('/index');
 
         });      
 

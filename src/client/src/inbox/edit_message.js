@@ -118,6 +118,8 @@ class Editmessage extends Component {
 
           console.log(responseFinal);
 
+          this.props.history.push('/inbox');
+
     }).catch( error => {
 
             if (error.response) {
@@ -127,6 +129,8 @@ class Editmessage extends Component {
             } else {                
               console.log('Error', error.message);
             }
+
+            this.props.history.push('/inbox');
 
     });
 

@@ -3,6 +3,7 @@ import Topbar from '../topbar/topbar';
 import Footer from '../footer/footer';
 import axios from 'axios';
 
+
 class Editbusiness extends Component {
 
   constructor(props) {
@@ -115,10 +116,13 @@ class Editbusiness extends Component {
   onFormSubmit(e){
     e.preventDefault() // Stop form submit
 
-
     if(this.state.file.length === 0){
 
       this.requestToUpdate(false);
+
+      this.props.history.push('/index');
+
+      // this.props.location.push('/index');
 
     }else{
 
@@ -144,7 +148,10 @@ class Editbusiness extends Component {
                   this.setState(storeImg);  
 
                   this.requestToUpdate(true);       
-      
+
+                  this.props.history.push('/index');
+
+                  // history.push('/index');
 
                 })
         }

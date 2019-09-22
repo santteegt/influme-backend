@@ -117,6 +117,8 @@ class EditDeal extends Component {
       
       this.requestToUpdate(false);
 
+      this.props.history.push('/index');
+
     }else
     {
 
@@ -138,6 +140,8 @@ class EditDeal extends Component {
           */
 
           this.requestToUpdate(true);
+
+          this.props.history.push('/index');
 
         })
     }

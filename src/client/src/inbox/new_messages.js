@@ -82,6 +82,8 @@ class Newmessages extends Component {
 
           console.log(responseFinal);
 
+          this.props.history.push('/inbox');
+
     }).catch( error => {
 
             if (error.response) {
@@ -91,6 +93,8 @@ class Newmessages extends Component {
             } else {                
               console.log('Error', error.message);
             }
+            
+            this.props.history.push('/inbox');
 
     });
 
