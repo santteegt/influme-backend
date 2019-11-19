@@ -18,6 +18,18 @@ const UserSchema = new mongoose.Schema(
 			required: true
 		},
 
+		token_detail: {
+			type: String,
+			trim: true,
+			required: true
+		},		
+			
+		raw_profile: {
+			type: String,
+			trim: true,
+			required: true
+		},		
+
 		name: {
 			type: String,
 			trim: true,
