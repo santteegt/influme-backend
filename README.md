@@ -96,3 +96,22 @@ El backend implementado es compartido con una aplicacion react dentro del mismo 
 * `src/server.js` Este archivo contiene la configuración de express para crear el servidor web con NodeJS.
 
 * `src/config/index.js` Este archivo contiene la configuración de conexion con mongoDB.
+
+* `src/package.json` Este archivo contiene las instrucciones que heroku debe ejecutar para desplegar el backend. La configuracion se realiza en la seccion *scripts*:.
+
+```
+"scripts": {
+    "start": "export NODE_ENV=production && node server.js",
+    "watch": "nodemon start",
+    "build": "sh build.sh"
+  } 
+```
+
+* `src/build.sh` Contiene los comandos para desplegar el frontend implemnetado en react.
+
+```
+#!/bin/bash
+cd src && npm install
+cd client && npm install && npm run build
+```
+
