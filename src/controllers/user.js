@@ -6,6 +6,13 @@ const User  = require('../models/user');
 
 const logger  = require('../utils/logger');
 
+var AuthenticationClient = require('auth0').AuthenticationClient;
+
+var auth0 = new AuthenticationClient({
+  domain: 'devappmobile.auth0.com',
+  clientId: 'u5l96Kp3uEDJ7PSfhH56WyHIJe4PaiXd'
+});
+
 // exports.list = (req, res) => {
 // 	const params = req.params || {};
 // 	const query = req.query || {};
@@ -60,6 +67,50 @@ exports.all_users_request = (req, res) => {
 		.then(
 			dataUser => {
 				res.json(dataUser);		
+			}
+		)
+		.catch(err => {
+			logger.error(err);
+			res.status(422).send(err.errors);
+		});
+};
+
+exports.single_user = (req, res) => {	
+
+	User.find({ _id: req.params.userId })
+		.then(
+			dataUser => {
+
+				var data = req.params.tkuser;
+				var responseImg = {"newImgProfile": ""};
+
+				// var data = {
+				// 	accessToken: 'Tt2RmguiyqcrXHVLnwPR9CvX7TShqE7d'
+				// };
+
+				auth0.getProfile(data, function (err, userInfo) {
+				  if (err) {
+				    // Handle error.
+				    console.log("Error.....");
+				  }else{
+					
+					// dataUser.picture = ""; 	
+				  	// console.log(userInfo.picture);
+
+				  	responseImg.newImgProfile = userInfo.picture;
+				  	// console.log("[*] 1. Image " + typeof(dataUser));
+	  				console.log("[*] 1. Image " + JSON.stringify(userInfo));
+
+	  				console.log("[*] 2. Image " + JSON.stringify(responseImg));
+
+	  				res.json(responseImg);
+				  	}
+
+				  
+				});
+
+				
+
 			}
 		)
 		.catch(err => {

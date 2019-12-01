@@ -18,6 +18,24 @@ const UserSchema = new mongoose.Schema(
 			required: true
 		},
 
+		tokenaccess: {
+			type: String,
+			lowercase: true,
+
+			// index: true,
+			unique: true,
+			required: true
+		},
+
+		refreshtoken: {
+			type: String,
+			lowercase: true,
+			// index: true,
+			unique: true,
+			required: true
+		},
+
+
 		token_detail: {
 			type: String,
 			trim: true,
