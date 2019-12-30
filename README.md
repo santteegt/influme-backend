@@ -1,18 +1,39 @@
 # influme-backend
 
+Backend server for the Influme app
+
+## Architecture Overview
+
+The backend and admin frontend are implemented using the MERN stack (MongoDB, ExpressJS, React, NodeJS). The source code is structured as follows:
+
+* `src/client` react-app project for the Admin frontend
+
+* `src/models` Contains the DDO for each entity defined in the MongoDb database schema
+
+* `src/controllers` Implement the controller actions that can be performed by the backend REST service
+
+* `src/routes` Implement routes exposed by the backend REST service
+
+* `src/server.js` Initializes and deploy the ExpressJS web server
+
+* `src/config/index.js` Contains different config parameers (e.g. MongoDB connection params, etc)
+
+## System requirements
+
+* Node v10+
+* Mongodb
+* [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) (for Production deployment)
+
 ## Setup instructions
 
-### Run APP
-
-* Source Code
+* Download the source code:
 
 ```
-https://github.com/santteegt/influme-backend.git
+git clone https://github.com/santteegt/influme-backend.git -b wreact
+cd influme-backend
 ```
 
-* Ubicarse en la rama **wreact**
-
-* Install dependencies
+* To install the project dependencies:
 
 ```
 $ npm install
@@ -22,11 +43,9 @@ $ cd src/client
 $ npm install
 ```
 
-#### Run localhost
+### Setup for Development
 
-* Start Local Mongod
-
-In case mondod is not runnning as a daemon
+* In case MongoDb isn't running the background,  start an instance of `mongod`
 
 ```
 $ cd src
@@ -34,37 +53,35 @@ mkdir ./data_db
 mongod --dbpath ./data_db
 ```
 
-* Prerequisitos
-
-En el directorio **src/client** configurar la variable *proxy* con el siguiente valor `http://localhost:3000` que corresponde al backend local.
-
-* Deploy Backend
+* To deploy the backend
 
 ```
 cd influme-backend/
 $ npm start
 ```
 
-* Deploy Client React
+* Set the `proxy` to `http://localhost:3000` in the `src/client/package.json`
+
+* To deploy the Admin frontend
 
 ```
 $ cd src/client
 $ npm start
 ```
 
-#### Production deployment
+### (Production) deployment in Heroku
 
-* Prerequisitos
+You need to create an account in Heroku and create a new App For more info, take a look at the Heroku official [docs](https://devcenter.heroku.com/)
 
-En el directorio **src/client** configurar la variable *proxy* con el siguiente valor `http://localhost:48907` que corresponde al backend en heroku.
+* Set the `proxy` to `http://localhost:48907` in the `src/client/package.json`
 
-* Only the first time, add the heroku remote
+* For the first time, a heroku remote needs to be set
 ```
-$ heroku git:remote -a influme
+$ heroku git:remote -a [heroku-app-name]
 $ git pull remote master
 ```
 
-* To deploy commit/push any change with any commit message
+* To deploy commit/push any change to the heroku instance
 
 ```
 $ heroku login
@@ -72,46 +89,3 @@ $ git add .
 $ git commit -m "Heroku deploy"
 $ git push heroku wreact:master
 ```
-
-
-## Dev deployment
-
-$ git checkout -b wreact
-$ git add .
-$ git commit -m "Heroku deploy"
-$ git push origin wreact
-
-## Arquitectura Backend-Frontend
-
-El backend implementado es compartido con una aplicacion react dentro del mismo servidor. El codigo fuente esta extructurado de la siguiente manera:
-
-* `src/client` Contiene un proyecto React con las diferentes interfaces web.
-
-* `src/models` Contiene los esquemas que representa las diferentes entidades de la base mongoDB.
-
-* `src/controllers` Contiene los controladores con las diferentes acciones sobre la base mongoDB.
-
-* `src/routes` Contiene las diferentes rutas para los controladores
-
-* `src/server.js` Este archivo contiene la configuración de express para crear el servidor web con NodeJS.
-
-* `src/config/index.js` Este archivo contiene la configuración de conexion con mongoDB.
-
-* `src/package.json` Este archivo contiene las instrucciones que heroku debe ejecutar para desplegar el backend. La configuracion se realiza en la seccion *scripts*:.
-
-```
-"scripts": {
-    "start": "export NODE_ENV=production && node server.js",
-    "watch": "nodemon start",
-    "build": "sh build.sh"
-  } 
-```
-
-* `src/build.sh` Contiene los comandos para desplegar el frontend implemnetado en react.
-
-```
-#!/bin/bash
-cd src && npm install
-cd client && npm install && npm run build
-```
-
