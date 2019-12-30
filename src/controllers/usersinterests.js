@@ -98,7 +98,37 @@ const logger  = require('../utils/logger');
 				logger.error(err);
 				res.status(422).send(err.errors);
 			});
-	};	
+	};
+
+	exports.listaux_id = (req, res) => {
+
+		console.log("id Usuario " + req.params.subid);
+
+		Usersinterests.find({})
+		.populate(
+			{
+	  			path: 'userid',
+	  			model: 'User',
+	  			match: {
+			      username: { "$regex": '.*' + req.params.subid + '.*', "$options": 'i' }			      
+			    }
+			})
+		.populate({
+	  			path: 'typeid',
+	  			model: 'Typemarker',
+			})
+			.then(
+				interestsResponse => {
+					console.log("Respuesta " + interestsResponse);
+					res.json(interestsResponse);		
+
+				}
+			)
+			.catch(err => {
+				logger.error(err);
+				res.status(422).send(err.errors);
+			});
+	};		
 
 	exports.get = (req, res) => {
 

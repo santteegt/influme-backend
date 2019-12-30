@@ -10,5 +10,6 @@ module.exports = api => {
 	api.route('/usersinterests/search/full/:userid').get(Usersinterests.getFull);
 	api.route('/usersinterests/search/:username').get(Usersinterests.list);
 	api.route('/usersinterests/search/nick/:username').get(Usersinterests.listaux);
+	api.route('/usersinterests/search/sub/:subid').get(Usersinterests.listaux_id);
 	api.route('/usersinterests/delete/:userid').delete(Usersinterests.delete);
 };

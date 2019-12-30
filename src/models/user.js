@@ -35,6 +35,14 @@ const UserSchema = new mongoose.Schema(
 			required: true
 		},
 
+		subid: {
+			type: String,
+			lowercase: true,
+			// index: true,
+			unique: true,
+			required: true
+		},	
+
 
 		token_detail: {
 			type: String,
